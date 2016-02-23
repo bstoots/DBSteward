@@ -1240,7 +1240,8 @@ class xml_parser {
     // use the sorted list to re-add child nodes in order
     foreach ($child_ids AS $child_id) {
       $new_child = $node->addChild($child_name);
-      self::file_sort_children_node_merge($new_child, simplexml_load_string($child_node_xml[$child_id]));
+      $child_node_node = simplexml_load_string($child_node_xml[$child_id]);
+      self::file_sort_children_node_merge($new_child, $child_node_node);
     }
   }
 
@@ -1301,13 +1302,15 @@ class xml_parser {
       foreach ($child_id_attrib_values AS $child_id_attrib_value) {
         $child_node = $prepend_child_nodes[$child_id_attrib_value];
         $new_child = $node->addChild($child_name);
-        self::file_sort_children_node_merge($new_child, simplexml_load_string($child_node));
+        $child_node_node = simplexml_load_string($child_node);
+        self::file_sort_children_node_merge($new_child, $child_node_node);
       }
 
       // add the rest
       foreach ($child_nodes AS $child_node) {
         $new_child = $node->addChild($child_name);
-        self::file_sort_children_node_merge($new_child, simplexml_load_string($child_node));
+        $child_node_node = simplexml_load_string($child_node);
+        self::file_sort_children_node_merge($new_child, $child_node_node);
       }
     }
   }
@@ -1523,7 +1526,10 @@ class xml_parser {
         foreach ($schema->table as $table) {
           foreach ($table->column as $column) {
             if (isset($column['type'])) {
-              list($column['type'], $column['default']) = self::mysql5_type_convert($column['type'], $column['default']);
+              list($column['type'], $d) = self::mysql5_type_convert($column['type'], $column['default']);
+              if (isset($column['default'])) {
+                $column['default'] = $d;
+              }
             }
           }
         }
@@ -1558,7 +1564,7 @@ class xml_parser {
     switch (strtolower($type)) {
       case 'bool':
       case 'boolean':
-        // $type = 'tinyint';
+        $type = 'tinyint(1)';
         if ($value) {
           switch (strtolower($value)) {
             case "'t'":
