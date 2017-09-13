@@ -148,7 +148,7 @@ New database XML definition with renamed table and column:
 
 Previous database XML definition:
 ```XML
-<table name="refinedTableA" oldTableName="tableA" primaryKey="tableA_id">
+<table name="refinedTableA" oldSchemaName="public" oldTableName="tableA" primaryKey="tableA_id">
   <column name="tableA_id" type="int"/>
   <column name="tableA_name" type="varchar(100)"/>
 </table>
@@ -191,7 +191,7 @@ Transitional table - Version B
   <column name="queue_id" type="serial" slonyId="20"/>
   <column name="queue_entry_time" type="timestamp with time zone"/>
   <column name="queue_file_name" type="character varying(300)"/>
-  <column name="queue_file_data_oldbase64" type="text" oldNameColumn="queue_file_data" description="pre version V, this column for base64 text storage of file contents"/>
+  <column name="queue_file_data_oldbase64" type="text" oldColumnName="queue_file_data" description="pre version V, this column for base64 text storage of file contents"/>
   <column name="queue_file_data_newbytea" type="bytea" description="version >= C column for bytea binary storage of file contents"/>
   <column name="queue_file_data_checksum" type="text"/>
   <column name="queue_lock_time" type="timestamp with time zone"/>
@@ -206,7 +206,7 @@ Final desired table form - Version C
   <column name="queue_id" type="serial" slonyId="20"/>
   <column name="queue_entry_time" type="timestamp with time zone"/>
   <column name="queue_file_name" type="character varying(300)"/>
-  <column name="queue_file_data" type="bytea" oldNameColumn="queue_file_data_newbytea"/>
+  <column name="queue_file_data" type="bytea" oldColumnName="queue_file_data_newbytea"/>
   <column name="queue_file_data_checksum" type="text"/>
   <column name="queue_lock_time" type="timestamp with time zone"/>
   <column name="queue_fetch_time" type="timestamp with time zone"/>

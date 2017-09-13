@@ -1,15 +1,19 @@
 # DBSteward Changelog
 
-## 1.4.2 - 2016-00-00
+## 1.4.2 - 2017-00-00
 
 New
   - Switch to CHANGEs.md for change log entries
+  - Project moved to https://github.com/dbsteward/dbsteward
+  - Check out updated documentation at https://github.com/dbsteward/dbsteward
 
 Changes
   - Fix pgsql8 partial index where clause output SQL  https://github.com/nkiraly/DBSteward/pull/105
   - Fix mysql5 type conversion for boolean to tinyint(1)  https://github.com/nkiraly/DBSteward/pull/107
   - One usage mode, with pretty colors  https://github.com/nkiraly/DBSteward/pull/116
   - Fix --dbpassword usage for blank passwords  https://github.com/nkiraly/DBSteward/pull/115
+  - Add pgsql8 ltree type support  https://github.com/dbsteward/dbsteward/pull/129
+  - Drop and Re-add mysql5 and pgsql8 foreign key constraints when target column type changes  https://github.com/dbsteward/dbsteward/pull/132
 
 
 ## 1.4.1 - 2015-09-15
@@ -26,7 +30,7 @@ Changes
 
 New
   - Improved Logging features from switching to monolog https://github.com/nkiraly/DBSteward/pull/82
-  - Drop PEAR package support. Please use composer: https://github.com/nkiraly/DBSteward/blob/v1.4.0-alpha1/doc/INSTALLING.md
+  - Drop PEAR package support. Please use composer: https://github.com/nkiraly/DBSteward/blob/v1.4.0-alpha1/docs/INSTALLING.md
   - Add unit test coverage information via Coveralls https://coveralls.io/r/nkiraly/DBSteward https://github.com/nkiraly/DBSteward/pull/83
   - Reorganized slonik output files for --generateslonik slony replication to include preamble https://github.com/nkiraly/DBSteward/pull/90
   - Include execute script and and subscribe set statements in revamped slonik output files https://github.com/nkiraly/DBSteward/pull/90
